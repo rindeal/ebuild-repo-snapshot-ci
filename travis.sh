@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Usage: fold_start <TAG> <COMMENT>
 #
 # These statements can be nested and must be in pair with `fold_end()`.
@@ -20,9 +22,9 @@ env-update
 cd /repo
 
 fold_start "equo.install"
-equo install --verbose --multifetch 4 sys-apps/portage
+time equo install --verbose --multifetch 4 sys-apps/portage
 fold_end "equo.install"
 
 fold_start "foo.py"
-./foo.py --c ./foo.config --o /tmp/repo-ci
+time python3 ./foo.py --c ./foo.config --o /tmp/repo-ci
 fold_end "foo.py"
