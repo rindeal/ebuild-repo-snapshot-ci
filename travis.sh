@@ -23,10 +23,22 @@ cd /repo
 
 fold_start "equo.mirrorsort"
 time equo repo mirrorsort sabayonlinux.org
+echo
+echo "/etc/entropy/repositories.conf:"
+echo
+cat /etc/entropy/repositories.conf
+echo
+echo "/etc/entropy/client.conf:"
+echo
+cat /etc/entropy/client.conf
 fold_end "equo.mirrorsort"
 
 fold_start "equo.install"
-time equo install --verbose --multifetch 4 sys-apps/portage
+time equo install --verbose --multifetch 4 sys-apps/portage dev-vcs/git dev-python/setuptools
+fold_end "equo.install"
+
+fold_start "equo.install"
+time emerge --ask=n dev-python/git-python
 fold_end "equo.install"
 
 fold_start "foo.py"
