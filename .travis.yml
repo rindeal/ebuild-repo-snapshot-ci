@@ -7,10 +7,9 @@ services:
 
 before_install:
     - docker pull sabayon/base-amd64
-    - docker run sabayon/base-amd64 /bin/bash
 
-install:
-    - equo install --verbose --multifetch 4 sys-apps/portage app-portage/repoman
+script:
+    - docker run sabayon/base-amd64 /bin/bash ./travis.sh
 
 deploy:
     provider: pages
