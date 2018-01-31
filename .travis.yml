@@ -9,7 +9,8 @@ before_install:
     - docker pull sabayon/base-amd64
 
 script:
-    - docker run sabayon/base-amd64 /bin/bash ./travis.sh
+    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
+    - docker run -v `pwd`:/repo:rw -v $PUBLIC_DIR:/public:rw sabayon/base-amd64 /bin/bash /repo/travis.sh
 
 deploy:
     provider: pages
@@ -18,7 +19,7 @@ deploy:
     keep-history: false
     on:
       branch: master
-    local-dir: public
+    local-dir: $PUBLIC_DIR
     target-branch: gh-pages
     email: deploy@travis-ci.org
     name: Travis CI Deployment Bot
