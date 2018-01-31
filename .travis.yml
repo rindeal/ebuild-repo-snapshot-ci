@@ -2,15 +2,25 @@ language: python
 
 sudo: enabled
 
+services:
+    - docker
+
+before_install:
+    - docker pull sabayon/base-amd64
+    - docker run sabayon/base-amd64 /bin/bash
+
+install:
+    - equo install --verbose --multifetch 4 sys-apps/portage app-portage/repoman
+
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
-  keep-history: false
-  on:
-    branch: master
-  local-dir: public
-  target-branch: gh-pages
-  email: deploy@travis-ci.org
-  name: Travis CI Deployment Bot
-  verbose: true
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+    keep-history: false
+    on:
+      branch: master
+    local-dir: public
+    target-branch: gh-pages
+    email: deploy@travis-ci.org
+    name: Travis CI Deployment Bot
+    verbose: true
