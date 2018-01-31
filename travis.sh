@@ -21,6 +21,10 @@ env-update
 
 cd /repo
 
+fold_start "equo.mirrorsort"
+time equo repo mirrorsort sabayonlinux.org
+fold_end "equo.mirrorsort"
+
 fold_start "equo.install"
 time equo install --verbose --multifetch 4 sys-apps/portage
 fold_end "equo.install"

@@ -60,10 +60,10 @@ class repo:
 
 class git_repo(repo):
 
-    name: str
-    url: str
-    branch: str = 'master'
-    location: str
+    name='' # type: str
+    url='' # type: str
+    branch = 'master' # type: str
+    location = '' # type: str
 
     def __init__(self, cfg: ConfigParser, repo_name: str):
         self.name = repo_name
