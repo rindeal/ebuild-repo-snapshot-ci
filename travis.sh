@@ -35,13 +35,15 @@ echo
 echo "/etc/entropy/client.conf:"
 echo
 cat /etc/entropy/client.conf
-echo
-tree /etc/entropy
 fold_end "equo.mirrorsort"
 
 fold_start "equo.install"
-time equo install --verbose --multifetch 4 sys-apps/portage dev-vcs/git dev-python/setuptools
+time equo install --verbose --multifetch 4 sys-apps/portage dev-vcs/git dev-python/setuptools app-text/tree
 fold_end "equo.install"
+
+fold_start "entropy.tree"
+tree /etc/entropy
+fold_end "entropy.tree"
 
 fold_start "equo.install"
 time emerge --ask=n dev-python/git-python
