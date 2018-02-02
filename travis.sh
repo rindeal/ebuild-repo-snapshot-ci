@@ -21,6 +21,10 @@ env-update
 
 cd /repo
 
+fold_start "entropy.license.accept"
+rsync --no-motd "rsync://rsync.gentoo.org/gentoo-portage/licenses/*" | awk '{print $5}' >> /etc/entropy/packages/license.accept
+fold_end "entropy.license.accept"
+
 fold_start "equo.mirrorsort"
 time equo repo mirrorsort sabayonlinux.org
 echo
@@ -31,6 +35,8 @@ echo
 echo "/etc/entropy/client.conf:"
 echo
 cat /etc/entropy/client.conf
+echo
+tree /etc/entropy
 fold_end "equo.mirrorsort"
 
 fold_start "equo.install"
