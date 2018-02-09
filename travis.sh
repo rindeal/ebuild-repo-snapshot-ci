@@ -28,9 +28,9 @@ fold_end "entropy.license.accept"
 fold_start "equo.mirrorsort"
 time equo repo mirrorsort sabayonlinux.org
 echo
-echo "/etc/entropy/repositories.conf:"
+echo "/etc/entropy/repositories.conf.d/entropy_sabayonlinux.org:"
 echo
-cat /etc/entropy/repositories.conf
+cat /etc/entropy/repositories.conf.d/entropy_sabayonlinux.org
 echo
 echo "/etc/entropy/client.conf:"
 echo
@@ -46,6 +46,7 @@ tree /etc/entropy
 fold_end "entropy.tree"
 
 fold_start "equo.install"
+time emerge --sync
 time emerge --ask=n dev-python/git-python
 fold_end "equo.install"
 

@@ -5,6 +5,11 @@ sudo: enabled
 services:
     - docker
 
+addons:
+    apt:
+        packages:
+            - docker-ce
+
 before_install:
     - docker pull sabayon/base-amd64
 
