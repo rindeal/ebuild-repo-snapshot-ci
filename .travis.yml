@@ -7,7 +7,7 @@ addons:
         packages:
             - g++-7
 
-#sudo: enabled
+sudo: enabled
 
 #services:
 #    - docker
