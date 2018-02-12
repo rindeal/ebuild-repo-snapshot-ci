@@ -1,5 +1,12 @@
 language: python
 
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-7
+
 #sudo: enabled
 
 #services:
@@ -9,7 +16,7 @@ language: python
 #    - docker pull sabayon/base-amd64
 
 script:
-    - gcc -### -E - -march=native 2>&1 | sed -r '/cc1/!d;s/(")|(^.* - )|( -mno-[^\ ]+)//g'
+    - gcc-7 -### -E - -march=native 2>&1 | sed -r '/cc1/!d;s/(")|(^.* - )|( -mno-[^\ ]+)//g'
     - false
 #    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
 #    - docker run -v `pwd`:/repo:rw -v $PUBLIC_DIR:/public:rw sabayon/base-amd64 /bin/bash /repo/travis.sh
