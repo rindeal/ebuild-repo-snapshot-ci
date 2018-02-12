@@ -1,21 +1,18 @@
 language: python
 
-sudo: enabled
+#sudo: enabled
 
-services:
-    - docker
+#services:
+#    - docker
 
-addons:
-    apt:
-        packages:
-            - docker-ce
-
-before_install:
-    - docker pull sabayon/base-amd64
+#before_install:
+#    - docker pull sabayon/base-amd64
 
 script:
-    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
-    - docker run -v `pwd`:/repo:rw -v $PUBLIC_DIR:/public:rw sabayon/base-amd64 /bin/bash /repo/travis.sh
+    - gcc -### -E - -march=native 2>&1 | sed -r '/cc1/!d;s/(")|(^.* - )|( -mno-[^\ ]+)//g'
+    - false
+#    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
+#    - docker run -v `pwd`:/repo:rw -v $PUBLIC_DIR:/public:rw sabayon/base-amd64 /bin/bash /repo/travis.sh
 
 deploy:
     provider: pages
