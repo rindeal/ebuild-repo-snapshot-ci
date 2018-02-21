@@ -10,7 +10,7 @@ before_install:
 
 script:
     - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
-    - docker run -v `pwd`:/repo:r -v $PUBLIC_DIR:/public:rw rindeal/gentoo-overlay-testing:latest /bin/bash /repo/travis.sh
+    - docker run -v `pwd`:/repo:ro -v $PUBLIC_DIR:/public:rw rindeal/gentoo-overlay-testing:latest /bin/bash /repo/travis.sh
 
 deploy:
     provider: pages
