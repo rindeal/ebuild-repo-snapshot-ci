@@ -19,8 +19,8 @@ fold_end() {
 cd /repo
 
 time emerge --sync
-time emerge -1 dev-python/git-python
+time emerge -1 --jobs=4 dev-python/git-python
 
-fold_start "foo.py"
+fold_start "foo.py" ""
 time python3 ./foo.py --c ./foo.config --o /public/repo-ci
 fold_end "foo.py"
