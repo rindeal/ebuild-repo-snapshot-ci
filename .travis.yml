@@ -1,25 +1,16 @@
-language: python
-
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
-            - g++-7
+language: generic
 
 sudo: enabled
 
-#services:
-#    - docker
+services:
+    - docker
 
-#before_install:
-#    - docker pull sabayon/base-amd64
+before_install:
+    - docker pull rindeal/gentoo-overlay-testing:latest
 
 script:
-    - gcc-7 -### -E - -march=native 2>&1 | sed -r '/cc1/!d;s/(")|(^.* - )|( -mno-[^\ ]+)//g'
-    - false
-#    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
-#    - docker run -v `pwd`:/repo:rw -v $PUBLIC_DIR:/public:rw sabayon/base-amd64 /bin/bash /repo/travis.sh
+    - PUBLIC_DIR=`mktemp -d --suffix=".PUBLIC"`
+    - docker run -v `pwd`:/repo:r -v $PUBLIC_DIR:/public:rw rindeal/gentoo-overlay-testing:latest /bin/bash /repo/travis.sh
 
 deploy:
     provider: pages
@@ -27,7 +18,7 @@ deploy:
     github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
     keep-history: false
     on:
-      branch: master
+        branch: master
     local-dir: $PUBLIC_DIR
     target-branch: gh-pages
     email: deploy@travis-ci.org
