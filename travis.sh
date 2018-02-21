@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -e
+set -u
+set -v
 
 # Usage: fold_start <TAG> <COMMENT>
 #
